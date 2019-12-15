@@ -42,3 +42,6 @@ transform the magnet field strength in Magnet-coordinate back to the Global-coor
 -------------------------------------------------------------------------------------------------------------------------
 ## 25.Nov.2019
 I rename and rewrite some m-files from german-language into english
+-------------------------------------------------------------------------------------------------------------------------
+## 15.Dec.2019
+I correct the Magnetfeld Distribution in Y-direction. And change the magnetic field strength (A/m) into magnetic flux density (Gauss), which can be detected by sensors
