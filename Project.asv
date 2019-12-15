@@ -85,131 +85,143 @@ for s = 1:25         % sensor index
     end
 end
 
-i = 1 : 300;
-j = 1 : 300;
-figure
-theta1 = (i-1)/300*2*pi;
-theta2 = (j-1)/300*2*pi;
-[X,Y] = meshgrid(theta1,theta2);
-mesh(X,Y,squeeze(BS(5,1,:,:)))
-T = title('$B_{x}$ von Sensor 5','fontsize',18);
-set(T,'Interpreter','latex')
-T = xlabel('$\theta_{1}$','fontsize',18);
-set(T,'Interpreter','latex')
-T = ylabel('$\theta_{2}$','fontsize',18);
-set(T,'Interpreter','latex')
-xticks([0,pi/2,pi,3/2*pi,2*pi])
-yticks([0,pi/2,pi,3/2*pi,2*pi])
-xticklabels({'0','\pi/2','\pi','3\pi/2','2\pi'})
-yticklabels({'0','\pi/2','\pi','3\pi/2','2\pi'})
-figure
-mesh(X,Y,squeeze(BS(5,2,:,:)))
-T = title('$B_{y}$ von Sensor 5','fontsize',18);
-set(T,'Interpreter','latex')
-T = xlabel('$\theta_{1}$','fontsize',18);
-set(T,'Interpreter','latex')
-T = ylabel('$\theta_{2}$','fontsize',18);
-set(T,'Interpreter','latex')
-xticks([0,pi/2,pi,3/2*pi,2*pi])
-yticks([0,pi/2,pi,3/2*pi,2*pi])
-xticklabels({'0','\pi/2','\pi','3\pi/2','2\pi'})
-yticklabels({'0','\pi/2','\pi','3\pi/2','2\pi'})
-figure
-mesh(X,Y,squeeze(BS(5,3,:,:)))
-T = title('$B_{z}$ von Sensor 5','fontsize',18);
-set(T,'Interpreter','latex')
-T = xlabel('$\theta_{1}$','fontsize',18);
-set(T,'Interpreter','latex')
-T = ylabel('$\theta_{2}$','fontsize',18);
-set(T,'Interpreter','latex')
-xticks([0,pi/2,pi,3/2*pi,2*pi])
-yticks([0,pi/2,pi,3/2*pi,2*pi])
-xticklabels({'0','\pi/2','\pi','3\pi/2','2\pi'})
-yticklabels({'0','\pi/2','\pi','3\pi/2','2\pi'})
-figure
-mesh(X,Y,squeeze(BS(11,1,:,:)))
-T = title('$B_{x}$ von Sensor 11','fontsize',18);
-set(T,'Interpreter','latex')
-T = xlabel('$\theta_{1}$','fontsize',18);
-set(T,'Interpreter','latex')
-T = ylabel('$\theta_{2}$','fontsize',18);
-set(T,'Interpreter','latex')
-xticks([0,pi/2,pi,3/2*pi,2*pi])
-yticks([0,pi/2,pi,3/2*pi,2*pi])
-xticklabels({'0','\pi/2','\pi','3\pi/2','2\pi'})
-yticklabels({'0','\pi/2','\pi','3\pi/2','2\pi'})
-figure
-mesh(X,Y,squeeze(BS(11,2,:,:)))
-T = title('$B_{y}$ von Sensor 11','fontsize',18);
-set(T,'Interpreter','latex')
-T = xlabel('$\theta_{1}$','fontsize',18);
-set(T,'Interpreter','latex')
-T = ylabel('$\theta_{2}$','fontsize',18);
-set(T,'Interpreter','latex')
-xticks([0,pi/2,pi,3/2*pi,2*pi])
-yticks([0,pi/2,pi,3/2*pi,2*pi])
-xticklabels({'0','\pi/2','\pi','3\pi/2','2\pi'})
-yticklabels({'0','\pi/2','\pi','3\pi/2','2\pi'})
-figure
-mesh(X,Y,squeeze(BS(11,3,:,:)))
-T = title('$B_{z}$ von Sensor 11','fontsize',18);
-set(T,'Interpreter','latex')
-T = xlabel('$\theta_{1}$','fontsize',18);
-set(T,'Interpreter','latex')
-T = ylabel('$\theta_{2}$','fontsize',18);
-set(T,'Interpreter','latex')
-xticks([0,pi/2,pi,3/2*pi,2*pi])
-yticks([0,pi/2,pi,3/2*pi,2*pi])
-xticklabels({'0','\pi/2','\pi','3\pi/2','2\pi'})
-yticklabels({'0','\pi/2','\pi','3\pi/2','2\pi'})
-figure
-mesh(X,Y,squeeze(BS(21,1,:,:)))
-T = title('$B_{x}$ von Sensor 21','fontsize',18);
-set(T,'Interpreter','latex')
-T = xlabel('$\theta_{1}$','fontsize',18);
-set(T,'Interpreter','latex')
-T = ylabel('$\theta_{2}$','fontsize',18);
-set(T,'Interpreter','latex')
-xticks([0,pi/2,pi,3/2*pi,2*pi])
-yticks([0,pi/2,pi,3/2*pi,2*pi])
-xticklabels({'0','\pi/2','\pi','3\pi/2','2\pi'})
-yticklabels({'0','\pi/2','\pi','3\pi/2','2\pi'})
-figure
-mesh(X,Y,squeeze(BS(21,2,:,:)))
-T = title('$B_{y}$ von Sensor 21','fontsize',18);
-set(T,'Interpreter','latex')
-T = xlabel('$\theta_{1}$','fontsize',18);
-set(T,'Interpreter','latex')
-T = ylabel('$\theta_{2}$','fontsize',18);
-set(T,'Interpreter','latex')
-xticks([0,pi/2,pi,3/2*pi,2*pi])
-yticks([0,pi/2,pi,3/2*pi,2*pi])
-xticklabels({'0','\pi/2','\pi','3\pi/2','2\pi'})
-yticklabels({'0','\pi/2','\pi','3\pi/2','2\pi'})
-figure
-mesh(X,Y,squeeze(BS(21,3,:,:)))
-T = title('$B_{z}$ von Sensor 21','fontsize',18);
-set(T,'Interpreter','latex')
-T = xlabel('$\theta_{1}$','fontsize',18);
-set(T,'Interpreter','latex')
-T = ylabel('$\theta_{2}$','fontsize',18);
-set(T,'Interpreter','latex')
-xticks([0,pi/2,pi,3/2*pi,2*pi])
-yticks([0,pi/2,pi,3/2*pi,2*pi])
-xticklabels({'0','\pi/2','\pi','3\pi/2','2\pi'})
-yticklabels({'0','\pi/2','\pi','3\pi/2','2\pi'})
+% i = 1 : 300;
+% j = 1 : 300;
+% figure
+% theta1 = (i-1)/300*2*pi;
+% theta2 = (j-1)/300*2*pi;
+% [X,Y] = meshgrid(theta1,theta2);
+% mesh(X,Y,squeeze(BS(5,1,:,:)))
+% T = title('$B_{x}$ von Sensor 5','fontsize',18);
+% set(T,'Interpreter','latex')
+% T = xlabel('$\theta_{1}$','fontsize',18);
+% set(T,'Interpreter','latex')
+% T = ylabel('$\theta_{2}$','fontsize',18);
+% set(T,'Interpreter','latex')
+% xticks([0,pi/2,pi,3/2*pi,2*pi])
+% yticks([0,pi/2,pi,3/2*pi,2*pi])
+% xticklabels({'0','\pi/2','\pi','3\pi/2','2\pi'})
+% yticklabels({'0','\pi/2','\pi','3\pi/2','2\pi'})
+% figure
+% mesh(X,Y,squeeze(BS(5,2,:,:)))
+% T = title('$B_{y}$ von Sensor 5','fontsize',18);
+% set(T,'Interpreter','latex')
+% T = xlabel('$\theta_{1}$','fontsize',18);
+% set(T,'Interpreter','latex')
+% T = ylabel('$\theta_{2}$','fontsize',18);
+% set(T,'Interpreter','latex')
+% xticks([0,pi/2,pi,3/2*pi,2*pi])
+% yticks([0,pi/2,pi,3/2*pi,2*pi])
+% xticklabels({'0','\pi/2','\pi','3\pi/2','2\pi'})
+% yticklabels({'0','\pi/2','\pi','3\pi/2','2\pi'})
+% figure
+% mesh(X,Y,squeeze(BS(5,3,:,:)))
+% T = title('$B_{z}$ von Sensor 5','fontsize',18);
+% set(T,'Interpreter','latex')
+% T = xlabel('$\theta_{1}$','fontsize',18);
+% set(T,'Interpreter','latex')
+% T = ylabel('$\theta_{2}$','fontsize',18);
+% set(T,'Interpreter','latex')
+% xticks([0,pi/2,pi,3/2*pi,2*pi])
+% yticks([0,pi/2,pi,3/2*pi,2*pi])
+% xticklabels({'0','\pi/2','\pi','3\pi/2','2\pi'})
+% yticklabels({'0','\pi/2','\pi','3\pi/2','2\pi'})
+% figure
+% mesh(X,Y,squeeze(BS(11,1,:,:)))
+% T = title('$B_{x}$ von Sensor 11','fontsize',18);
+% set(T,'Interpreter','latex')
+% T = xlabel('$\theta_{1}$','fontsize',18);
+% set(T,'Interpreter','latex')
+% T = ylabel('$\theta_{2}$','fontsize',18);
+% set(T,'Interpreter','latex')
+% xticks([0,pi/2,pi,3/2*pi,2*pi])
+% yticks([0,pi/2,pi,3/2*pi,2*pi])
+% xticklabels({'0','\pi/2','\pi','3\pi/2','2\pi'})
+% yticklabels({'0','\pi/2','\pi','3\pi/2','2\pi'})
+% figure
+% mesh(X,Y,squeeze(BS(11,2,:,:)))
+% T = title('$B_{y}$ von Sensor 11','fontsize',18);
+% set(T,'Interpreter','latex')
+% T = xlabel('$\theta_{1}$','fontsize',18);
+% set(T,'Interpreter','latex')
+% T = ylabel('$\theta_{2}$','fontsize',18);
+% set(T,'Interpreter','latex')
+% xticks([0,pi/2,pi,3/2*pi,2*pi])
+% yticks([0,pi/2,pi,3/2*pi,2*pi])
+% xticklabels({'0','\pi/2','\pi','3\pi/2','2\pi'})
+% yticklabels({'0','\pi/2','\pi','3\pi/2','2\pi'})
+% figure
+% mesh(X,Y,squeeze(BS(11,3,:,:)))
+% T = title('$B_{z}$ von Sensor 11','fontsize',18);
+% set(T,'Interpreter','latex')
+% T = xlabel('$\theta_{1}$','fontsize',18);
+% set(T,'Interpreter','latex')
+% T = ylabel('$\theta_{2}$','fontsize',18);
+% set(T,'Interpreter','latex')
+% xticks([0,pi/2,pi,3/2*pi,2*pi])
+% yticks([0,pi/2,pi,3/2*pi,2*pi])
+% xticklabels({'0','\pi/2','\pi','3\pi/2','2\pi'})
+% yticklabels({'0','\pi/2','\pi','3\pi/2','2\pi'})
+% figure
+% mesh(X,Y,squeeze(BS(21,1,:,:)))
+% T = title('$B_{x}$ von Sensor 21','fontsize',18);
+% set(T,'Interpreter','latex')
+% T = xlabel('$\theta_{1}$','fontsize',18);
+% set(T,'Interpreter','latex')
+% T = ylabel('$\theta_{2}$','fontsize',18);
+% set(T,'Interpreter','latex')
+% xticks([0,pi/2,pi,3/2*pi,2*pi])
+% yticks([0,pi/2,pi,3/2*pi,2*pi])
+% xticklabels({'0','\pi/2','\pi','3\pi/2','2\pi'})
+% yticklabels({'0','\pi/2','\pi','3\pi/2','2\pi'})
+% figure
+% mesh(X,Y,squeeze(BS(21,2,:,:)))
+% T = title('$B_{y}$ von Sensor 21','fontsize',18);
+% set(T,'Interpreter','latex')
+% T = xlabel('$\theta_{1}$','fontsize',18);
+% set(T,'Interpreter','latex')
+% T = ylabel('$\theta_{2}$','fontsize',18);
+% set(T,'Interpreter','latex')
+% xticks([0,pi/2,pi,3/2*pi,2*pi])
+% yticks([0,pi/2,pi,3/2*pi,2*pi])
+% xticklabels({'0','\pi/2','\pi','3\pi/2','2\pi'})
+% yticklabels({'0','\pi/2','\pi','3\pi/2','2\pi'})
+% figure
+% mesh(X,Y,squeeze(BS(21,3,:,:)))
+% T = title('$B_{z}$ von Sensor 21','fontsize',18);
+% set(T,'Interpreter','latex')
+% T = xlabel('$\theta_{1}$','fontsize',18);
+% set(T,'Interpreter','latex')
+% T = ylabel('$\theta_{2}$','fontsize',18);
+% set(T,'Interpreter','latex')
+% xticks([0,pi/2,pi,3/2*pi,2*pi])
+% yticks([0,pi/2,pi,3/2*pi,2*pi])
+% xticklabels({'0','\pi/2','\pi','3\pi/2','2\pi'})
+% yticklabels({'0','\pi/2','\pi','3\pi/2','2\pi'})
 
 
 %max. detected signal
 for i = 1 : 25
-    Bd(i,1) = max(max(max(squeeze(BS(i,:,:,:)))));
-    Bd(i,2) = min(min(min(squeeze(BS(i,:,:,:)))));
+    Bd(i) = max(max(max(squeeze(BS(i,:,:,:)))));
 end
 %convert Tesla to Gauss
 Bd = Bd * 10000;
 
 
-
+ = zeros(length(q2),length(q3));
+for i = 1 : length(q2)
+    for j = 1 : length(q3)
+        if abs(By(i,j)) > 500/10000;
+            Dy(i,j) = 1;
+        else
+            Dy(i,j) = NaN;
+        end
+        if abs(Bz(i,j)) > 500/10000;
+            Dz(i,j) = 1;
+        end
+    end
+end
+            
 
 
 

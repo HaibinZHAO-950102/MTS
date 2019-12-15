@@ -9,6 +9,8 @@ n = 500;        % Number of the Nodes
 B = 0.15;
 H = 2 * B;      % Width and Length of the calculated area
 mu0 = 4*pi*10^-7;
+Sensordata = [2, 2.5, 100, 25/1000]; % Error, Zerovoltage, Range, Sensitivity
+
 
 %[Hy,Hz,q2,q3] = Magnetfield(Ra,L,Br,B,H,n);
 %Calculate the Magnetic Field Distribution
@@ -50,8 +52,10 @@ q3 = xlsread('q3.xlsx');
 % xlim([min(q2),max(q2)])
 % ylim([min(q3),max(q3)])
 
-By = Hy * mu0;
-Bz = Hz * mu0;
+
+% MFS into MFD in Gauss
+By = Hy * mu0 * 10000;
+Bz = Hz * mu0 * 10000;
 
 
 
@@ -204,15 +208,36 @@ end
 for i = 1 : 25
     Bd(i) = max(max(max(squeeze(BS(i,:,:,:)))));
 end
-%convert Tesla to Gauss
-Bd = Bd * 10000;
 
 
+% D is the area that out of the range of a sensor
+D = zeros(length(q2),length(q3));
+for i = 1 : length(q2)
+    for j = 1 : length(q3)
+        if abs(By(i,j)) > Sensordata(3) | abs(Bz(i,j)) > Sensordata(3);
+            D(i,j) = 1;
+        else
+            D(i,j) = NaN;
+        end
+    end
+end
+% [X,Y] = meshgrid(q2,q3);
+% mesh(X,Y,D')
+% T = title('MFD great than the range','fontsize',18);
+% set(T,'Interpreter','latex')
+% T = xlabel('$q_{2}$','fontsize',18);
+% set(T,'Interpreter','latex')
+% T = ylabel('$q_{3}$','fontsize',18);
+% set(T,'Interpreter','latex')
 
 
-
-
-
+C = [0.03,0.02,0.005,pi/3,0];
+for s = 1:25
+    [rcs thetak]= Coordinatentransform(C,Sensorw(:,s));
+    [ByV,BzV] = itplt(rcs(2,2),rcs(2,3),q2,q3,By,Bz,H,B,n);
+    [BxS ByS BzS] = inversetransform(theta1,theta2,thetak,ByV,BzV);
+    [SV(s) O(s)] = Noising(BxS,Sensordata);
+end
 
 
 
