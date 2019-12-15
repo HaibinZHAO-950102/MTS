@@ -1,0 +1,33 @@
+clc;clear
+
+
+Ra = 0.012;     % Radius of the Magnet in Meter m
+L = 0.0075;      % Altitude of the Magnet in Meter m
+Br = 1.229;      % Magnetic Remanenz in T
+n = 200;        % Number of the Nodes
+B = 0.025;
+H = 0.02;      % Width and Length of the calculated area
+
+[Hy,Hz,q2,q3] = Magnetfield(Ra,L,Br,B,H,n);
+
+hy1 = Hy(:,316);
+hz1 = Hz(:,316);
+
+hy2 = Hy(:,376);
+hz2 = Hz(:,376);
+
+
+BH = textread('BH.txt');
+x = BH(:,1);
+y = BH(:,2);
+for i = 1 : size(q2)
+    hy1(i) = interp1(x,y,hy1(i),'spline')
+end
+
+plot(q2,hy1);
+hold on 
+plot(q2,hz1);
+figure
+plot(q2,hy2);
+hold on 
+plot(q2,hz2);

@@ -11,7 +11,7 @@ Ra = varargin{4};
 L = varargin{5};
 
 dr = Ra/n;
-dt = 2*pi/100;
+dt = 2*pi/n;
 
 sum = 0;
 for r = 0 : dr : Ra

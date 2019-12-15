@@ -27,7 +27,7 @@ end
 % Megnetic Field from area 3
 for i = 1 : n + 1;
     for j = 1 : n * 2 + 1;
-        h32(i,j) = h12(i,2*n+2-j);
+        h32(i,j) = - h12(i,2*n+2-j);
         h33(i,j) = h13(i,2*n+2-j);
     end
 end
@@ -50,7 +50,7 @@ end
 %Symmetry to eliminate the numerical error on coordinate
 for i = 1 : n + 1;
     for j = 1 : n;
-        Hy(i,j) = Hy(i,2*n+2-j);
+        Hy(i,j) = - Hy(i,2*n+2-j);
         Hz(i,j) = Hz(i,2*n+2-j);
         end
     end
@@ -59,11 +59,11 @@ i = 1 : n + 1;
 j = 1 : n * 2 + 1;
 q2 = (i - 1) * B / n;
 q3 = (j - 1) * H / 2 / n - H/2;
-
-xlswrite('Hy.xlsx',Hy);
-xlswrite('Hz.xlsx',Hz);
-xlswrite('q2.xlsx',q2);
-xlswrite('q3.xlsx',q3);
+% 
+% xlswrite('Hy.xlsx',Hy);
+% xlswrite('Hz.xlsx',Hz);
+% xlswrite('q2.xlsx',q2);
+% xlswrite('q3.xlsx',q3);
 
 
 
