@@ -14,9 +14,14 @@ function [Hy,Hz,q2,q3] = Magnetfield(Ra,L,Br,B,H,n)
 m = Br / (4*pi*10^(-7));
 
 
+h12 = zeros(n + 1,n * 2 + 1);
+h13 = h12;
+h32 = h12;
+h33 = h12;
+
 % Megnetic Field from area 1
-for i = 1 : n + 1;
-    for j = 1 : n * 2 + 1;
+for i = 1 : n + 1
+    for j = 1 : n * 2 + 1
         q2 = (i - 1) * B / n;
         q3 = (j - 1) * H / 2 / n - H/2;
         h12(i,j) = H12(q2,q3,m,Ra,L);
@@ -25,8 +30,8 @@ for i = 1 : n + 1;
 end
 
 % Megnetic Field from area 3
-for i = 1 : n + 1;
-    for j = 1 : n * 2 + 1;
+for i = 1 : n + 1
+    for j = 1 : n * 2 + 1
         h32(i,j) = - h12(i,2*n+2-j);
         h33(i,j) = h13(i,2*n+2-j);
     end
@@ -36,8 +41,8 @@ Hy = h12 + h32;
 Hz = h13 + h33;
 
 % let the magnetic field strength inside the Manget to 0
-for i = 1 : n + 1;
-    for j = 1 : n * 2 + 1;
+for i = 1 : n + 1
+    for j = 1 : n * 2 + 1
         q2 = (i - 1) * B / n;
         q3 = (j - 1) * H / 2 / n - H/2;
         if and((q2 <= Ra + B/n),(q3 <= L/2+H/2/n))
@@ -48,12 +53,12 @@ for i = 1 : n + 1;
 end
 
 %Symmetry to eliminate the numerical error on coordinate
-for i = 1 : n + 1;
-    for j = 1 : n;
+for i = 1 : n + 1
+    for j = 1 : n
         Hy(i,j) = - Hy(i,2*n+2-j);
         Hz(i,j) = Hz(i,2*n+2-j);
-        end
     end
+end
 
 i = 1 : n + 1;
 j = 1 : n * 2 + 1;

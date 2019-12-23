@@ -1,4 +1,4 @@
-function [rcs thetak] = coordinatentransform(Orientation,Sensor)
+function [rcs, thetak] = Coordinatentransform(Orientation,Sensor)
 % rcs[1,:] is the Coordinates of the Sensors in Magentcoordinaten
 % Orientation is the position and rotation of the magnet, c1,c2,c3,theta1,theta2
 % Sensor is the Position of Sensors 
@@ -33,7 +33,7 @@ rcs(2,1) = 0;
 rcs(2,2) = -rcs(1,1)*sin(thetak) + rcs(1,2)*cos(thetak);
 rcs(2,3) = rcs(1,3);
 
-if rcs(1,1) == 0 & rcs(1,2) == 0
+if rcs(1,1) == 0 && rcs(1,2) == 0
     thetak = 0;
     rcs(2,2) = 0;
 end
