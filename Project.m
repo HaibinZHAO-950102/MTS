@@ -151,16 +151,16 @@ c1 = -0.05;
 c2 = -0.05;
 c3 = 0.05;           % Magnet position
 
-BS = zeros(Sensornumber^2,3,300,300);
+BS = zeros(Sensornumber^2,3,100,100);
 for s = 1:Sensornumber^2         % sensor index
-    for i = 1:300
-        for j = 1:300
-            theta1 = (i-1)/300*2*pi;
-            theta2 = (j-1)/300*2*pi;
+    for i = 1:100
+        for j = 1:100
+            theta1 = (i-1)/100*2*pi;
+            theta2 = (j-1)/100*2*pi;
             C = [c1,c2,c3,theta1,theta2];
-            [rcs, thetak]= Coordinatentransform(C,Sensorw(:,s));
+            [rcs, thetak]= coordinatew2i(C,Sensorw(:,s));
             [ByV,BzV] = itplt(rcs(2,2),rcs(2,3),q2,q3,By,Bz,H,B,n);
-            [BxS, ByS, BzS] = inversetransform(C(3),C(4),thetak,ByV,BzV);
+            [BxS, ByS, BzS] = coordinatei2w(C(3),C(4),thetak,ByV,BzV);
             BS(s,1,i,j) = BxS;
             BS(s,2,i,j) = ByS;
             BS(s,3,i,j) = BzS;
@@ -168,11 +168,11 @@ for s = 1:Sensornumber^2         % sensor index
     end
 end
 % 
-% i = 1 : 300;
-% j = 1 : 300;
+% i = 1 : 100;
+% j = 1 : 100;
 % figure
-% theta1 = (i-1)/300*2*pi;
-% theta2 = (j-1)/300*2*pi;
+% theta1 = (i-1)/100*2*pi;
+% theta2 = (j-1)/100*2*pi;
 % [X,Y] = meshgrid(theta1,theta2);
 % mesh(X,Y,squeeze(BS(4,1,:,:)))
 % T = title('$B_{x}$ von Sensor 4','fontsize',18);
@@ -341,25 +341,19 @@ end
 
 
 
-
-
-
-
-
-C = [0.03,0.02,0.005,pi/3,pi/4];
-SV = zeros(Sensornumber^2,1);
-O = zeros(Sensornumber^2,1);
-for s = 1:Sensornumber^2
-    [rcs, thetak]= Coordinatentransform(C,Sensorw(:,s));
-    [ByV,BzV] = itplt(rcs(2,2),rcs(2,3),q2,q3,By,Bz,H,B,n);
-    [BxS, ByS, BzS] = inversetransform(C(3),C(4),thetak,ByV,BzV);
-    [SV(s), O(s)] = Noising(ByS,Sensordata);
-end
-
-
-
-
-
+% C = [0.03,0.02,0.005,pi/3,pi/4];
+% SV = zeros(Sensornumber^2,1);
+% O = zeros(Sensornumber^2,1);
+% for s = 1:Sensornumber^2
+%     [rcs, thetak]= coordinatew2i(C,Sensorw(:,s));
+%     [ByV,BzV] = itplt(rcs(2,2),rcs(2,3),q2,q3,By,Bz,H,B,n);
+%     [BxS, ByS, BzS] = coordinatei2w(C(3),C(4),thetak,ByV,BzV);
+%     [SV(s), O(s)] = Noising(ByS,Sensordata);
+% end
+% 
+%
+% Bb = squeeze(BS(:,1,150,150));
+% Os = localization(Bb,O0, By, Bz, GBy, GBz, q2, q3, H, B, n, Sensornumber, Sensorw)
 
 
 
