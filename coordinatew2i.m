@@ -33,12 +33,12 @@ else
         thetak =  pi/2;
     end
 end
-
-rcs(2,1) = 0;
-rcs(2,2) = -rcs(1,1)*sin(thetak) + rcs(1,2)*cos(thetak);
-rcs(2,3) = rcs(1,3);
-
 if rcs(1,1) == 0 && rcs(1,2) == 0
     thetak = 0;
     rcs(2,2) = 0;
 end
+rcs(2,1) = 0;
+rcs(2,2) = -rcs(1,1)*sin(thetak) + rcs(1,2)*cos(thetak);
+rcs(2,3) = rcs(1,3);
+
+

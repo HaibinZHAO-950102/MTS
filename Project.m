@@ -147,16 +147,16 @@ Sensorw = sensorposition(W(1),Sensornumber);            % Sensor positions in gl
 % yticklabels({'-0.05','-0.025','0','0.025','0.05'})
 
 
-c1 = -0.05;
-c2 = -0.05;
-c3 = 0.05;           % Magnet position
+c1 = -0.049;
+c2 = -0.049;
+c3 = 0.049;           % Magnet position
 
-BS = zeros(Sensornumber^2,3,100,100);
+BS = zeros(Sensornumber^2,3,360,360);
 for s = 1:Sensornumber^2         % sensor index
-    for i = 1:100
-        for j = 1:100
-            theta1 = (i-1)/100*2*pi;
-            theta2 = (j-1)/100*2*pi;
+    for i = 1:360
+        for j = 1:360
+            theta1 = (i-1)/360*2*pi;
+            theta2 = (j-1)/360*2*pi;
             C = [c1,c2,c3,theta1,theta2];
             [rcs, thetak]= coordinatew2i(C,Sensorw(:,s));
             [ByV,BzV] = itplt(rcs(2,2),rcs(2,3),q2,q3,By,Bz,H,B,n);
@@ -168,14 +168,14 @@ for s = 1:Sensornumber^2         % sensor index
     end
 end
 % 
-% i = 1 : 100;
-% j = 1 : 100;
+% i = 1 : 360;
+% j = 1 : 360;
 % figure
-% theta1 = (i-1)/100*2*pi;
-% theta2 = (j-1)/100*2*pi;
+% theta1 = (i-1)/360*2*pi;
+% theta2 = (j-1)/360*2*pi;
 % [X,Y] = meshgrid(theta1,theta2);
-% mesh(X,Y,squeeze(BS(4,1,:,:)))
-% T = title('$B_{x}$ von Sensor 4','fontsize',18);
+% mesh(X,Y,squeeze(BS(5,1,:,:)))
+% T = title('$B_{x}$ von Sensor 5','fontsize',18);
 % set(T,'Interpreter','latex')
 % T = xlabel('$\theta_{1}$','fontsize',18);
 % set(T,'Interpreter','latex')
@@ -186,8 +186,8 @@ end
 % xticklabels({'0','\pi/2','\pi','3\pi/2','2\pi'})
 % yticklabels({'0','\pi/2','\pi','3\pi/2','2\pi'})
 % figure
-% mesh(X,Y,squeeze(BS(4,2,:,:)))
-% T = title('$B_{y}$ von Sensor 4','fontsize',18);
+% mesh(X,Y,squeeze(BS(5,2,:,:)))
+% T = title('$B_{y}$ von Sensor 5','fontsize',18);
 % set(T,'Interpreter','latex')
 % T = xlabel('$\theta_{1}$','fontsize',18);
 % set(T,'Interpreter','latex')
@@ -198,7 +198,7 @@ end
 % xticklabels({'0','\pi/2','\pi','3\pi/2','2\pi'})
 % yticklabels({'0','\pi/2','\pi','3\pi/2','2\pi'})
 % figure
-% mesh(X,Y,squeeze(BS(4,3,:,:)))
+% mesh(X,Y,squeeze(BS(5,3,:,:)))
 % T = title('$B_{z}$ von Sensor 5','fontsize',18);
 % set(T,'Interpreter','latex')
 % T = xlabel('$\theta_{1}$','fontsize',18);
@@ -352,8 +352,9 @@ end
 % end
 % 
 %
-% Bb = squeeze(BS(:,1,150,150));
-% Os = localization(Bb,O0, By, Bz, GBy, GBz, q2, q3, H, B, n, Sensornumber, Sensorw)
 
-
+% [Og Bb] = randpoint(Sensorw,Sensornumber,q2,q3,By,Bz,H,B,n);
+% initialspace = [max(Og(1)-0.025,-0.05),min(Og(1)+0.025,0.05),max(Og(2)-0.025,-0.05),min(Og(2)+0.025,0.05),max(Og(3)-0.0125,0),min(Og(3)+0.0125,0.05),max(Og(4)-0.5*pi,0),min(Og(4)+0.5*pi,2*pi),max(Og(5)-0.5*pi,0),min(Og(5)+0.5*pi,2*pi)];
+% node = 5;
+% Os = localization2(Bb,initialspace,node,Sensornumber,Sensorw,q2,q3,By,Bz,H,B,n)
 
