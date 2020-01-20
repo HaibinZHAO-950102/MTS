@@ -1,32 +1,19 @@
 function Os = localization2(Bb,initialspace, node, Sensornumber,Sensorw,q2,q3,By,Bz,H,B,n)
+spacelength = initialspace(2)-initialspace(1);
 
-N = ceil(log((initialspace(2)-initialspace(1))*1000)/log(node));
-
-for n = 1 : N
-    c1l = (initialspace(2)-initialspace(1))/2/node + initialspace(1);
-    c1u = initialspace(2) - (initialspace(2)-initialspace(1))/2/node;
-    c2l = (initialspace(4)-initialspace(3))/2/node + initialspace(3);
-    c2u = initialspace(4) - (initialspace(4)-initialspace(3))/2/node;
-    c3l = (initialspace(6)-initialspace(5))/2/node + initialspace(5);
-    c3u = initialspace(6) - (initialspace(6)-initialspace(5))/2/node;
-    t1l = (initialspace(8)-initialspace(7))/2/node + initialspace(7);
-    t1u = initialspace(8) - (initialspace(8)-initialspace(7))/2/node;
-    t2l = (initialspace(10)-initialspace(9))/2/node + initialspace(9);
-    t2u = initialspace(10) - (initialspace(10)-initialspace(9))/2/node;
-
-
-    BS = zeros(Sensornumber^2,node,node,node,node,node);
+while spacelength > 0.0005
+   BS = zeros(Sensornumber^2,node,node,node,node,node);
     for s = 1:Sensornumber^2
         for i = 1:node
             for j = 1:node
                 for k = 1:node
                     for l = 1:node
                         for m = 1:node
-                            c1(i) = c1l + (i-1)*(initialspace(2)-initialspace(1))/node;
-                            c2(j) = c2l + (j-1)*(initialspace(4)-initialspace(3))/node;
-                            c3(k) = c3l + (k-1)*(initialspace(6)-initialspace(5))/node;
-                            theta1(l) = t1l + (l-1)*(initialspace(8)-initialspace(7))/node;
-                            theta2(m) = t2l + (m-1)*(initialspace(10)-initialspace(9))/node;
+                            c1(i) = initialspace(1) + (i-1)*(initialspace(2)-initialspace(1))/(node-1);
+                            c2(j) = initialspace(3) + (j-1)*(initialspace(4)-initialspace(3))/(node-1);
+                            c3(k) = initialspace(5) + (k-1)*(initialspace(6)-initialspace(5))/(node-1);
+                            theta1(l) = initialspace(7) + (l-1)*(initialspace(8)-initialspace(7))/(node-1);
+                            theta2(m) = initialspace(9) + (m-1)*(initialspace(10)-initialspace(9))/(node-1);
                             C = [c1(i),c2(j),c3(k),theta1(l),theta2(m)];
                             [rcs, thetak]= coordinatew2i(C,Sensorw(:,s));
                             [ByV,BzV] = itplt(rcs(2,2),rcs(2,3),q2,q3,By,Bz,H,B,n);
@@ -65,7 +52,17 @@ for n = 1 : N
             end
         end
     end
-    
-    
-    
+    Os = [c1(INDEX(1)),c2(INDEX(2)),c3(INDEX(3)),theta1(INDEX(4)),theta2(INDEX(5))];
+    spacelength = (initialspace(2)-initialspace(1))/(node-1);
+    rotatespacelength = (initialspace(8)-initialspace(7))/(node-1);
+    initialspace(1) = max(Os(1)-spacelength,-0.05);
+    initialspace(2) = min(Os(1)+spacelength,0.05);
+    initialspace(3) = max(Os(2)-spacelength,-0.05);
+    initialspace(4) = min(Os(2)+spacelength,0.05);
+    initialspace(5) = max(Os(3)-spacelength,0);
+    initialspace(6) = min(Os(3)+spacelength,0.05);
+    initialspace(7) = max(Os(4)-rotatespacelength,0);
+    initialspace(8) = min(Os(4)+rotatespacelength,2*pi);
+    initialspace(9) = max(Os(5)-rotatespacelength,0);
+    initialspace(10) = min(Os(5)+rotatespacelength,2*pi);
 end

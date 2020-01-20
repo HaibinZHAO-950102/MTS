@@ -12,6 +12,8 @@ mu0 = 4*pi*10^-7;
 Sensordata = [2, 2.5, 500, 5/1000]; % Error, Zerovoltage, Range, Sensitivity
 Sensornumber = 5; % number of sensors on each edge
 k = 11;            % AD Converter bit
+vmax = 0.2;          % maximal velocity of magnet
+rmax = pi;         % maximal rotation speed of magnet
 
 
 %[Hy,Hz,q2,q3] = Magnetfield(Ra,L,Br,B,H,n);
@@ -353,8 +355,19 @@ end
 % 
 %
 
-% [Og Bb] = randpoint(Sensorw,Sensornumber,q2,q3,By,Bz,H,B,n);
-% initialspace = [max(Og(1)-0.025,-0.05),min(Og(1)+0.025,0.05),max(Og(2)-0.025,-0.05),min(Og(2)+0.025,0.05),max(Og(3)-0.0125,0),min(Og(3)+0.0125,0.05),max(Og(4)-0.5*pi,0),min(Og(4)+0.5*pi,2*pi),max(Og(5)-0.5*pi,0),min(Og(5)+0.5*pi,2*pi)];
-% node = 5;
-% Os = localization2(Bb,initialspace,node,Sensornumber,Sensorw,q2,q3,By,Bz,H,B,n)
-
+[Og Bb] = randpoint(Sensorw,Sensornumber,q2,q3,By,Bz,H,B,n);
+initialspace(1) = max(Og(1)-vmax*0.01,-0.05);
+initialspace(2) = min(Og(1)+vmax*0.01,0.05);
+initialspace(3) = max(Og(2)-vmax*0.01,-0.05);
+initialspace(4) = min(Og(2)+vmax*0.01,0.05);
+initialspace(5) = max(Og(3)-vmax*0.01,0);
+initialspace(6) = min(Og(3)+vmax*0.01,0.05);
+initialspace(7) = max(Og(4)-rmax*0.01,0);
+initialspace(8) = min(Og(4)+rmax*0.01,2*pi);
+initialspace(9) = max(Og(5)-rmax*0.01,0);
+initialspace(10) = min(Og(5)+rmax*0.01,2*pi);
+node = 4;
+t1 = clock;
+Os = localization2(Bb,initialspace,node,Sensornumber,Sensorw,q2,q3,By,Bz,H,B,n);
+t2 = clock;
+etime(t2,t1)

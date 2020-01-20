@@ -64,7 +64,7 @@ i = 1 : n + 1;
 j = 1 : n * 2 + 1;
 q2 = (i - 1) * B / n;
 q3 = (j - 1) * H / 2 / n - H/2;
-% 
+
 % xlswrite('Hy.xlsx',Hy);
 % xlswrite('Hz.xlsx',Hz);
 % xlswrite('q2.xlsx',q2);
