@@ -1,9 +1,16 @@
 function Os = localization2(Bb,initialspace, node, Sensornumber,Sensorw,q2,q3,By,Bz,H,B,n)
 spacelength = initialspace(2)-initialspace(1);
 
+BS = zeros(Sensornumber^2,node,node,node,node,node);
+c1 = zeros(node);
+c2 = zeros(node);
+c3 = zeros(node);
+theta1 = zeros(node);
+theta2 = zeros(node);
+C = zeros(1,5);
+G = zeros(node,node,node,node,node);
 while spacelength > 0.0005
-   BS = zeros(Sensornumber^2,node,node,node,node,node);
-    for s = 1:Sensornumber^2
+     for s = 1:Sensornumber^2
         for i = 1:node
             for j = 1:node
                 for k = 1:node
@@ -17,7 +24,7 @@ while spacelength > 0.0005
                             C = [c1(i),c2(j),c3(k),theta1(l),theta2(m)];
                             [rcs, thetak]= coordinatew2i(C,Sensorw(:,s));
                             [ByV,BzV] = itplt(rcs(2,2),rcs(2,3),q2,q3,By,Bz,H,B,n);
-                            [BxS, ByS, BzS] = coordinatei2w(C(3),C(4),thetak,ByV,BzV);
+                            [BxS, ~, ~] = coordinatei2w(C(3),C(4),thetak,ByV,BzV);
                             BS(s,i,j,k,l,m) = BxS;
                         end
                     end

@@ -12,14 +12,17 @@ ZV = Sensordata(2);
 Range = Sensordata(3);
 Sen = Sensordata(4);
 
+f = zeros(length(MFD),1);
+for i = 1: length(MFD)
 
-if abs(MFD) > Range
-    o = 0;
-else
-    o = 1;
+    if abs(MFD(i)) > Range
+        o(i) = 0;
+    else
+        o(i) = 1;
+    end
+
+
+    f(i) = ((rand()-0.5)*2*error/100+1) * Sen * MFD(i) + ZV;
 end
-
-
-f = ((rand()-0.5)*2*error/100+1) * Sen * MFD + ZV;
 
 

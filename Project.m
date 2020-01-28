@@ -5,14 +5,14 @@ W = [0.1,0.1,0.05];   %Size of the Workspaces in Meter m
 Ra = 0.009;     % Radius of the Magnet in Meter m
 L = 0.005;      % Altitude of the Magnet in Meter m
 Br = 1.48;      % Magnetic Remanenz in T
-n = 500;        % Number of the Nodes
+Nodenumber = 500;        % Number of the Nodes
 B = 0.15;
 H = 2 * B;      % Width and Length of the calculated area
 mu0 = 4*pi*10^-7;
 Sensordata = [2, 2.5, 500, 5/1000]; % Error, Zerovoltage, Range, Sensitivity
 Sensornumber = 5; % number of sensors on each edge
-k = 11;            % AD Converter bit
-vmax = 0.2;          % maximal velocity of magnet
+k = 16;            % AD Converter bit
+vmax = 1;          % maximal velocity of magnet
 rmax = pi;         % maximal rotation speed of magnet
 
 
@@ -161,7 +161,7 @@ for s = 1:Sensornumber^2         % sensor index
             theta2 = (j-1)/360*2*pi;
             C = [c1,c2,c3,theta1,theta2];
             [rcs, thetak]= coordinatew2i(C,Sensorw(:,s));
-            [ByV,BzV] = itplt(rcs(2,2),rcs(2,3),q2,q3,By,Bz,H,B,n);
+            [ByV,BzV] = itplt(rcs(2,2),rcs(2,3),q2,q3,By,Bz,H,B,Nodenumber);
             [BxS, ByS, BzS] = coordinatei2w(C(3),C(4),thetak,ByV,BzV);
             BS(s,1,i,j) = BxS;
             BS(s,2,i,j) = ByS;
@@ -343,31 +343,24 @@ end
 
 
 
-% C = [0.03,0.02,0.005,pi/3,pi/4];
-% SV = zeros(Sensornumber^2,1);
-% O = zeros(Sensornumber^2,1);
-% for s = 1:Sensornumber^2
-%     [rcs, thetak]= coordinatew2i(C,Sensorw(:,s));
-%     [ByV,BzV] = itplt(rcs(2,2),rcs(2,3),q2,q3,By,Bz,H,B,n);
-%     [BxS, ByS, BzS] = coordinatei2w(C(3),C(4),thetak,ByV,BzV);
-%     [SV(s), O(s)] = Noising(ByS,Sensordata);
-% end
-% 
-%
+for n = 1 : 50
+    [Og, Bg] = randpoint(Sensorw,Sensornumber,q2,q3,By,Bz,H,B,Nodenumber);
+    OG(n,:) = Og;
+    Vn = Noising(Bg,Sensordata);
+    Bb = quantize(Vn,k,Sensordata);
+    initialspace(1) = max(Og(1)-vmax*0.01,-0.05);
+    initialspace(2) = min(Og(1)+vmax*0.01,0.05);
+    initialspace(3) = max(Og(2)-vmax*0.01,-0.05);
+    initialspace(4) = min(Og(2)+vmax*0.01,0.05);
+    initialspace(5) = max(Og(3)-vmax*0.01,0);
+    initialspace(6) = min(Og(3)+vmax*0.01,0.05);
+    initialspace(7) = max(Og(4)-rmax*0.01,0);
+    initialspace(8) = min(Og(4)+rmax*0.01,2*pi);
+    initialspace(9) = max(Og(5)-rmax*0.01,0);
+    initialspace(10) = min(Og(5)+rmax*0.01,2*pi);
+    node = 4;
+    Os(n,:) = localization2(Bb,initialspace,node,Sensornumber,Sensorw,q2,q3,By,Bz,H,B,Nodenumber);
+    Errork(n) = norm(Os(n,1:3) - OG(n,1:3))*1000;
+    Errorr(n) = norm(Os(n,4:5) - OG(n,4:5));
+end
 
-[Og Bb] = randpoint(Sensorw,Sensornumber,q2,q3,By,Bz,H,B,n);
-initialspace(1) = max(Og(1)-vmax*0.01,-0.05);
-initialspace(2) = min(Og(1)+vmax*0.01,0.05);
-initialspace(3) = max(Og(2)-vmax*0.01,-0.05);
-initialspace(4) = min(Og(2)+vmax*0.01,0.05);
-initialspace(5) = max(Og(3)-vmax*0.01,0);
-initialspace(6) = min(Og(3)+vmax*0.01,0.05);
-initialspace(7) = max(Og(4)-rmax*0.01,0);
-initialspace(8) = min(Og(4)+rmax*0.01,2*pi);
-initialspace(9) = max(Og(5)-rmax*0.01,0);
-initialspace(10) = min(Og(5)+rmax*0.01,2*pi);
-node = 4;
-t1 = clock;
-Os = localization2(Bb,initialspace,node,Sensornumber,Sensorw,q2,q3,By,Bz,H,B,n);
-t2 = clock;
-etime(t2,t1)
