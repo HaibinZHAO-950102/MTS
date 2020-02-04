@@ -94,7 +94,6 @@ end
 
 
 
-
 experimenttimes = 1000;
 % OG = zeros(experimenttimes,5);
 % BG = zeros(25,experimenttimes);
@@ -121,9 +120,83 @@ testdata = [2, 4, 500, 5/1000, 16;...
             2, 4, 500, 2/1000, 16;...
             2, 4, 500, 10/1000, 16;...
             2, 4, 500, 20/1000, 16];
-% data(1:5)=Sensordata, data(5) = k (ADC bit)
-for experiment = 2 : 13
+
+for experiment = 1 : 12
     data = testdata(i,:);
-    name = ['Ex_',num2str(i-1)];
-    experiment(name, data(1:5), data(6), experimenttimes, Sensorw,Sensornumber,q2,q3,By,Bz,H,B,Nodenumber, vmax, rmax, OG, BG);
-end
+    % experiment('Ex_0.xlsx', Sensordata, k, experimenttimes, Sensorw,Sensornumber,q2,q3,By,Bz,H,B,Nodenumber, vmax, rmax, OG, BG) 
+
+% Experiment 1
+Sensordata = [2, 4, 500, 5/1000];
+k = 12;
+experiment('Ex_1.xlsx', Sensordata, k, experimenttimes, Sensorw,Sensornumber,q2,q3,By,Bz,H,B,Nodenumber, vmax, rmax, OG, BG) 
+
+% Experiment 2
+Sensordata = [2, 4, 500, 5/1000];
+k = 14;
+experiment('Ex_2.xlsx', Sensordata, k, experimenttimes, Sensorw,Sensornumber,q2,q3,By,Bz,H,B,Nodenumber, vmax, rmax, OG, BG) 
+
+% Experiment 3
+Sensordata = [2, 4, 500, 5/1000];
+k = 18;
+experiment('Ex_3.xlsx', Sensordata, k, experimenttimes, Sensorw,Sensornumber,q2,q3,By,Bz,H,B,Nodenumber, vmax, rmax, OG, BG) 
+
+% Experiment 4
+Sensordata = [2, 4, 500, 5/1000];
+k = 20;
+experiment('Ex_4.xlsx', Sensordata, k, experimenttimes, Sensorw,Sensornumber,q2,q3,By,Bz,H,B,Nodenumber, vmax, rmax, OG, BG) 
+
+% Experiment 5
+Sensordata = [0.5, 4, 500, 5/1000]; 
+k = 16; 
+experiment('Ex_5.xlsx', Sensordata, k, experimenttimes, Sensorw,Sensornumber,q2,q3,By,Bz,H,B,Nodenumber, vmax, rmax, OG, BG) 
+
+% Experiment 6
+Sensordata = [1, 4, 500, 5/1000];
+k = 16; 
+experiment('Ex_6.xlsx', Sensordata, k, experimenttimes, Sensorw,Sensornumber,q2,q3,By,Bz,H,B,Nodenumber, vmax, rmax, OG, BG) 
+
+% Experiment 7
+Sensordata = [4, 4, 500, 5/1000];
+k = 16; 
+experiment('Ex_7.xlsx', Sensordata, k, experimenttimes, Sensorw,Sensornumber,q2,q3,By,Bz,H,B,Nodenumber, vmax, rmax, OG, BG) 
+
+% Experiment 8
+Sensordata = [8, 4, 500, 5/1000]; 
+k = 16; 
+experiment('Ex_8.xlsx', Sensordata, k, experimenttimes, Sensorw,Sensornumber,q2,q3,By,Bz,H,B,Nodenumber, vmax, rmax, OG, BG) 
+
+% Experiment 9
+Sensordata = [2, 4, 500, 1/1000];
+k = 16;
+experiment('Ex_9.xlsx', Sensordata, k, experimenttimes, Sensorw,Sensornumber,q2,q3,By,Bz,H,B,Nodenumber, vmax, rmax, OG, BG) 
+
+% Experiment 10
+Sensordata = [2, 4, 500, 2/1000];
+k = 16;
+experiment('Ex_10.xlsx', Sensordata, k, experimenttimes, Sensorw,Sensornumber,q2,q3,By,Bz,H,B,Nodenumber, vmax, rmax, OG, BG) 
+
+% Experiment 11
+Sensordata = [2, 4, 500, 10/1000];
+k = 16;
+experiment('Ex_11.xlsx', Sensordata, k, experimenttimes, Sensorw,Sensornumber,q2,q3,By,Bz,H,B,Nodenumber, vmax, rmax, OG, BG) 
+
+% Experiment 12
+Sensordata = [2, 4, 500, 20/1000];
+k = 16;
+experiment('Ex_12.xlsx', Sensordata, k, experimenttimes, Sensorw,Sensornumber,q2,q3,By,Bz,H,B,Nodenumber, vmax, rmax, OG, BG) 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
