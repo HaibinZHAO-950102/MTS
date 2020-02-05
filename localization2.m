@@ -9,7 +9,7 @@ theta1 = zeros(node);
 theta2 = zeros(node);
 C = zeros(1,5);
 G = zeros(node,node,node,node,node);
-while spacelength > 0.0005
+while spacelength > 0.0003
      for s = 1:Sensornumber^2
         for i = 1:node
             for j = 1:node

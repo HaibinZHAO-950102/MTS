@@ -1,9 +1,18 @@
-function experiment(name, Sensordata, k, experimenttimes, Sensorw,Sensornumber,q2,q3,By,Bz,H,B,Nodenumber, vmax, rmax, OG, BG)
+function experiment(name, testdata, experimenttimes, Sensorw,Sensornumber,q2,q3,By,Bz,H,B,Nodenumber, vmax, rmax, OG, BG)
+Sensordata = testdata(1:4);
+k = testdata(5);
 Os = zeros(experimenttimes,5);
 Error = zeros(experimenttimes,2);
-sum = 0;
 for n = 1 : experimenttimes
-    [name(1:4), ' ',num2str(n)]
+    if n == 1
+        Decroator(['Localizing the 1st Point / ',num2str(experimenttimes),' Points in ',name],1)
+    elseif n == 2
+        Decroator(['Localizing the 2nd Point / ',num2str(experimenttimes),' Points in ',name],1)
+    elseif n == 3
+        Decroator(['Localizing the 3rd Point / ',num2str(experimenttimes),' Points in ',name],1)
+    else
+        Decroator(['Localizing the ',num2str(n),'th Point / ',num2str(experimenttimes),' Points in ',name],1)
+    end
     Og = OG(n,:);
     Bg = BG(:,n);
     Vn = Noising(Bg,Sensordata);
@@ -22,11 +31,8 @@ for n = 1 : experimenttimes
     Os(n,:) = localization2(Bb,initialspace,node,Sensornumber,Sensorw,q2,q3,By,Bz,H,B,Nodenumber);
     Error(n,1) = norm(Os(n,1:3) - OG(n,1:3))*1000;
     Error(n,2) = norm(Os(n,4:5) - OG(n,4:5));
-    if Error(n,1) < 1
-        sum = sum + 1;
-    end
 end
-m = mean(Error(:,1));
-R = [sum,m,NaN(1,experimenttimes-2)]';
-Result3 = [OG,Os,Error,R];
-xlswrite(name,Result3);
+Parameter = [testdata,NaN(1,7)];
+Result = [Parameter;OG(1:experimenttimes,:),Os,Error];
+name = [name,'.xlsx'];
+xlswrite(name,Result);
