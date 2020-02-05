@@ -23,6 +23,9 @@ I have already calculated the Data and upload the xlsx-file with the following P
 * H = 2 * B;      % Breite und Hoehe des zu berechneten Bereichs
 So that user can directly use these data
 
+## H12.m and H13.m
+subfunction for Magnetfield.m
+
 ## sensorposition.m
 calculate the Sensorpositions with a specific Workspace size and the number of sensors on each edge
 
@@ -45,3 +48,57 @@ I rename and rewrite some m-files from german-language into english
 -------------------------------------------------------------------------------------------------------------------------
 ## 15.Dec.2019
 I correct the Magnetfeld Distribution in Y-direction. And change the magnetic field strength (A/m) into magnetic flux density (Gauss), which can be detected by sensors
+
+--------------------------------------------------------------------------------------------------------------------------
+## 04.Feb.2020
+from 15.Dec to 04.Feb, i forgot to write the README file :(
+
+what i have done in this period of time:
+fixed some problem with the interpolation function
+2 localization algorithms are wrote
+to select the hardware, i write a function to calculate the gradient, and the detectablearea
+write the functions to simulate the noise and quatization
+write a function to generate a random test point
+write the functions to do better plot and mesh
+write a function to do some experiment for the localization algorithms
+rename coordinatentransform.m as coordinatew2i.m
+rename inversetransform.m as coordinatei2w.m, which makes the name more clear.
+
+## coordinatei2w.m
+as i said, it's just a name-replacement of inverstranform.m
+
+## foordinatew2i.m
+as i said, it's just a name-replacement of coordinatentransform.m
+
+## grad.m
+a function to calculate the Gradient of Megnet flow density, using Find Difference Method
+
+## mesh3D.m/ plotarea.m/ plotsensorposition.m
+due to the complexity of ploting and meshing, i write these functions to plot and mesh. User can input the variables, Values and their names, it will plot or mesh by some presetting parameters.
+
+## detectablearea.m
+to calculate the detectable area of a magnet under some specifical sensor datens, e.g. ADC bit, Sensitivity,...
+
+## Noising.m
+to make some noise on the detected signal based on Error and Drift of the Hall sensor
+
+## quantize.m
+to quantize the noised signal in to discrete Voltage Value
+
+## localization.m
+Using Gradient Method to find the minimum of the optimization problem, then we can confirm the oritation of the 
+
+## localization2.m
+using Box-Search to determinate the orintation of the Magnet
+
+## randpoint.m
+Generate a random testpoint and its MFD distribution, as well as the detected signal of each sensor
+
+## experiment.m
+Using localization algorithms and generated MFD distribution of the random test point, we try to localize the Magnet.
+I did 13000 times, using different datas of sensors, aim to find that, which parameter of a sensor is most important for localzing the Magnet.
+
+
+
+
+
