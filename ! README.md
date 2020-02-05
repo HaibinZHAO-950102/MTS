@@ -98,6 +98,12 @@ Generate a random testpoint and its MFD distribution, as well as the detected si
 Using localization algorithms and generated MFD distribution of the random test point, we try to localize the Magnet.
 I did 13000 times, using different datas of sensors, aim to find that, which parameter of a sensor is most important for localzing the Magnet.
 
+---------------------------------------------------------------------------------------------------------------------------
+## 05.Feb.2020
+i write a Decorator and add 2 parameters for Decorator.m and mesh3D.m, so that user can activite or deactivete the function Decoriator or mesh-functions
+
+## Decorator.m
+a decorator, which shows that which funcion is now running.
 
 
 
