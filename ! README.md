@@ -115,10 +115,13 @@ changed something in Magnetfield.m
 changed the name Hy.xlsx into Hy_main.xlsx, and analogous for Hz, q2, q3. Because i want to calculate another MFS called Hy_show.xlsx. the new-calculated MFS can show the MFS distribution more clearly.
 
 Fixed some problems in plot- and mesh- functions
+new function of plot-/ and mesh- functions. if figureplot == 2, the function will output the image.
 
 wrote a function called area2points.m to change the detectable area from a huge matrix into a n times 2 vector. so that it would be much faster ploting the detectable area.
 
 wrote a function called detectmovement.m. Before that, i can only calculate the detectable area of a magnet field, when the magent move a specific (given) distance. for e.g. in my programm 1mm. The new function can calculate the detectable movement under different adc-bit.
+
+
 
 ## area2points.m
 change the detectable area from a huge matrix into a n times 2 vector. so that it would be much faster ploting the detectable area.
@@ -135,5 +138,7 @@ x = [1, 1;
 
 ## detectmovement.m
 to calculate the detectable movement of a magnet under specific adc-bit
+
+
 
 
