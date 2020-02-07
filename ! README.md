@@ -67,7 +67,7 @@ rename inversetransform.m as coordinatei2w.m, which makes the name more clear.
 ## coordinatei2w.m
 as i said, it's just a name-replacement of inverstranform.m
 
-## foordinatew2i.m
+## coordinatew2i.m
 as i said, it's just a name-replacement of coordinatentransform.m
 
 ## grad.m
