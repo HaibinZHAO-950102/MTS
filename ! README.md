@@ -141,6 +141,8 @@ x = [1, 1;
 ## detectmovement.m
 to calculate the detectable movement of a magnet under specific adc-bit
 
+----------------------------------------------------------------------------------------------
+i will change all variable names in uniform. (variable names in every sub-functions do not changed) So that the followers will use the code easily
 
 
 
