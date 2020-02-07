@@ -11,7 +11,7 @@ for i = 1 : length(q2)
 end
 
 
-D2 = NaN(length(q2),length(q3));     % D2 is the area smaller than the resolution
+D2 = zeros(length(q2),length(q3));     % D2 is the area smaller than the resolution
 a = 1/1000;                          % detectable position change in m
 for i = 1: size(GBm,1)
     for j = 1: size(GBm,2)

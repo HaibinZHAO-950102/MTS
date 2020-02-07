@@ -1,23 +1,21 @@
-function plotarea(q2,q3,D,variable1,variable2,name,figureplot)
-if figureplot == 1
+function plotarea(x,y,variable1,variable2,name,figureplot)
+if figureplot >= 1
     figure
-    for i = 1:12:size(D,1)
-        for j = 1:12:size(D,2)
-            if D(i,j) == 1
-                hold on
-                plot(q2(i),q3(j),'k.','Markersize',5)
-            end
-        end
-    end
-    i = size(D,1);
+    plot(x,y,'k.','Markersize',5)
+    set(gca,'Fontsize',20)
+    set(gca,'fontname','times new Roman')
+    T = title(name,'fontsize',40);
+    set(T,'Interpreter','latex')
+    T = xlabel(variable1,'fontsize',30);
+    set(T,'Interpreter','latex')
+    T = ylabel(variable2,'fontsize',30);
+    set(T,'Interpreter','latex')
     axis equal
-    T = title(name,'fontsize',20);
-    set(T,'Interpreter','latex')
-    T = xlabel(variable1,'fontsize',18);
-    set(T,'Interpreter','latex')
-    T = ylabel(variable2,'fontsize',18);
-    set(T,'Interpreter','latex')
-    xlim([min(q2),max(q2)])
-    ylim([min(q3),max(q3)])
+    xlim([0 0.15])
+    ylim([-0.15 0.15])
+    if figureplot == 2
+        set(gcf,'outerposition',get(0,'screensize'));
+        print([name,'.png'],'-dpng','-r600')
+    end
     drawnow
 end

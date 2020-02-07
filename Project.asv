@@ -17,8 +17,8 @@ Area_Length = 2 * Area_Width;       % Width and Length of the calculated area
 mu0 = 4*pi*10^-7;
 
 % Hardwares
-Sensor_data = [2, 4, 500, 5/1000];          % Drift, Zerovoltage, Range, Sensitivity
-Sensor_number = 5;                          % number of sensors on each edge
+Sensordata = [2, 4, 500, 5/1000];          % Error, Zerovoltage, Range, Sensitivity
+Sensornumber = 5;                          % number of sensors on each edge
 ADC_bit = 16;                                    % AD Converter bit
 
 % Movement of Magnet
@@ -60,16 +60,16 @@ mesh3D(Coordinate_q2(1:end-1),Coordinate_q3(1:end-1),MFDGradient_z(:,:,2),'$q_{2
 
 % Sensor positions in global-coordinaten
 Decroator('Calculating Sensor Positions ...',decroator);
-Sensorposition_w = sensorposition(W(1),Sensor_number);
+Sensorposition_w = sensorposition(W(1),Sensornumber);
 plotsensorposition(Sensorposition_w(1,:),Sensorposition_w(2,:),'$\vec{w_{1}}$','$\vec{w_{2}}$','Sensorpositionen',figureplot);
 
 % Detected Signal at Sensors
 Orientation = [-0.049,-0.049,0.049,0,0];                   % Magnet Orientation
 test_node = 360;
-MFD_at_Sensor = zeros(Sensor_number^2,3,test_node,test_node);
+MFD_at_Sensor = zeros(Sensornumber^2,3,test_node,test_node);
 THETA1 = 0:1/test_node*2*pi:2*pi-1/test_node*2*pi;
 THETA2 = THETA1;
-for s = 1:Sensor_number^2                         % s is sensor index
+for s = 1:Sensornumber^2                         % s is sensor index
     Decroator(['Calculating Detected Signal at Sensor ',num2str(s),' ...'],decroator);
     for i = 1:test_node
         for j = 1:test_node
@@ -98,8 +98,8 @@ ADC_BIT = [12,14,16,18,20];                         % ADC bit
 Detectable_area = NaN(length(ADC_BIT),length(Coordinate_q2),length(Coordinate_q3));
 Detectable_movement = NaN(length(ADC_BIT),length(Coordinate_q2),length(Coordinate_q3));
 for i = 1:length(ADC_BIT)
-    Detectable_area(i,:,:) = detectablearea(Coordinate_q2,Coordinate_q3,Sensor_data,ADC_BIT(i),MFD_value,MFDGradient_value);
-    Detectable_movement(i,:,:) = detectmovement(Coordinate_q2,Coordinate_q3,Sensor_data,ADC_BIT(i),MFDGradient_value);
+    Detectable_area(i,:,:) = detectablearea(Coordinate_q2,Coordinate_q3,Sensordata,ADC_BIT(i),MFD_value,MFDGradient_value);
+    Detectable_movement(i,:,:) = detectmovement(Coordinate_q2,Coordinate_q3,Sensordata,ADC_BIT(i),MFDGradient_value);
     Detectable_points = area2points(Coordinate_q2(1:end-1),Coordinate_q3(2:end-1),squeeze(Detectable_area(i,1:end-1,2:end-1)));
     name1 = ['Detektiertbarer Bereich mit ',num2str(ADC_BIT(i)),' bit'];
     plotarea(Detectable_points(:,1),Detectable_points(:,2),'$q_{2}$','$q_{3}$',name1,figureplot);
@@ -132,16 +132,15 @@ Test_Data = [2, 4, 500, 5/1000, 16;2, 4, 500, 5/1000, 12;2, 4, 500, 5/1000, 14;.
             2, 4, 500, 5/1000, 18;2, 4, 500, 5/1000, 20;0.5, 4, 500, 5/1000, 16;...
             1, 4, 500, 5/1000, 16;4, 4, 500, 5/1000, 16;8, 4, 500, 5/1000, 16;...
             2, 4, 500, 1/1000, 16;2, 4, 500, 2/1000, 16;2, 4, 500, 10/1000, 16;...
-            2, 4, 500, 20/1000, 20;1, 4, 500, 5/1000, 18;0.5, 4, 500, 10/1000, 20;...
-            0, 4, 500, 100/1000, 50];
+            2, 4, 500, 20/1000, 20;1, 4, 500, 5/1000, 18;0.5, 4, 500, 10/1000, 20];
 % data(1:4)=Sensordata, data(5) = k (ADC bit)
 
 % do experiments under different sensordaten and write them in excel-tables
-for i = 16 : size(Test_Data,1)
-    data = Test_Data(i,:);
-    name = ['Ex_',num2str(i-1)];
-    experiment(name, data, Experimenttimes, Sensorposition_w,Sensornumber,Coordinate_q2,Coordinate_q3,MFD_y,MFD_z,Area_Length,Area_Width,Nodenumber,max_movespeed,max_rotatespeed,Orientation_Given,MFD_Given);
-end
+% for i = 1 : size(Test_Data,1)
+%     data = Test_Data(i,:);
+%     name = ['Ex_',num2str(i-1)];
+%     experiment(name, data, Experimenttimes, Sensorposition_w,Sensornumber,Coordinate_q2,Coordinate_q3,MFD_y,MFD_z,Area_Length,Area_Width,Nodenumber,max_movespeed,max_rotatespeed,Orientation_Given,MFD_Given);
+% end
 
 % analyse the results
 Decroator('Analysing Results ....',decroator);
@@ -164,7 +163,7 @@ for i = 1 : size(Test_Data,1)
     meanerror(i) = mean(Error(:,i));
 end
 xlswrite('analysis.xlsx',[inner1mm,meanerror]);
-
+plotpoints(x,y,variable1,variable2,name,figureplot)
 
 combineresult = squeeze(exresult(1,:,:));
 combineerror = Error(:,1);

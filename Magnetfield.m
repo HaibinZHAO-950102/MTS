@@ -1,4 +1,4 @@
-function [Hy,Hz,q2,q3] = Magnetfield(Ra,L,Br,B,H,n)
+function [Hy,Hz,q2,q3] = Magnetfield(Ra,L,Br,B,H,n,filename,write)
 % Hy and Hz are magnetic field strength in i2 and i3 direction
 % q2 is the coordinaten in i2 direction in Meter (m)
 % q3 is the coordinaten in i3 direction in Meter (m)
@@ -22,6 +22,9 @@ h33 = h12;
 % Megnetic Field from area 1
 for i = 1 : n + 1
     for j = 1 : n * 2 + 1
+        clc
+        percentage = floor((((i - 1) * (2 * n + 1) + (j - 1)) / (n + 1) / (2 * n + 1))*1000)/10;
+        Decroator(['Calculating MFS ',num2str(percentage),'% ...'],1)
         q2 = (i - 1) * B / n;
         q3 = (j - 1) * H / 2 / n - H/2;
         h12(i,j) = H12(q2,q3,m,Ra,L);
@@ -65,11 +68,12 @@ j = 1 : n * 2 + 1;
 q2 = (i - 1) * B / n;
 q3 = (j - 1) * H / 2 / n - H/2;
 
-% xlswrite('Hy.xlsx',Hy);
-% xlswrite('Hz.xlsx',Hz);
-% xlswrite('q2.xlsx',q2);
-% xlswrite('q3.xlsx',q3);
-
+if write == 1
+    xlswrite(['Hy_',filename,'.xlsx'],Hy);
+    xlswrite(['Hz_',filename,'.xlsx'],Hz);
+    xlswrite(['q2_',filename,'.xlsx'],q2);
+    xlswrite(['q3_',filename,'.xlsx'],q3);
+end
 
 
 

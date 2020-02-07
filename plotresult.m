@@ -1,8 +1,7 @@
-function mesh3D(q2,q3,HM,variable1,variable2,variable3,name,filename,figureplot)
+function plotresult(meanerror,inner1mm,figureplot)
 if figureplot >= 1
     figure
-    [X,Y] = meshgrid(q2,q3);
-    mesh(X,Y,HM')
+    plot(x,y,'k.','Markersize',8)
     set(gca,'Fontsize',20)
     set(gca,'fontname','times new Roman')
     T = title(name,'fontsize',40);
@@ -10,15 +9,12 @@ if figureplot >= 1
     T = xlabel(variable1,'fontsize',30);
     set(T,'Interpreter','latex')
     T = ylabel(variable2,'fontsize',30);
-    set(T,'Interpreter','latex') 
-    T = zlabel(variable3,'fontsize',30);
     set(T,'Interpreter','latex')
-    xlim([min(q2),max(q2)])
-    ylim([min(q3),max(q3)])
-    zlim([min(min(HM)),max(max(HM))])
+    xlim([min(x) max(x)])
+    ylim([min(y) max(y)])
     if figureplot == 2
         set(gcf,'outerposition',get(0,'screensize'));
-        print([filename,'.png'],'-dpng','-r600')
+        print([name,'.png'],'-dpng','-r600')
     end
     drawnow
 end
