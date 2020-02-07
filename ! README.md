@@ -105,6 +105,35 @@ i write a Decorator and add 2 parameters for Decorator.m and mesh3D.m, so that u
 ## Decorator.m
 a decorator, which shows that which funcion is now running.
 
+___________________________________________________________________________________________________________________________
 
+## 07.Feb.2020
+
+changed something in Magnetfield.m
+  able to input the filename, and whether write the excel-file or not
+
+changed the name Hy.xlsx into Hy_main.xlsx, and analogous for Hz, q2, q3. Because i want to calculate another MFS called Hy_show.xlsx. the new-calculated MFS can show the MFS distribution more clearly.
+
+Fixed some problems in plot- and mesh- functions
+
+wrote a function called area2points.m to change the detectable area from a huge matrix into a n times 2 vector. so that it would be much faster ploting the detectable area.
+
+wrote a function called detectmovement.m. Before that, i can only calculate the detectable area of a magnet field, when the magent move a specific (given) distance. for e.g. in my programm 1mm. The new function can calculate the detectable movement under different adc-bit.
+
+## area2points.m
+change the detectable area from a huge matrix into a n times 2 vector. so that it would be much faster ploting the detectable area.
+for e.g. 
+D = [1, 0, 1;
+     0, 1, 1;
+     1, 0, 0];
+to
+x = [1, 1;
+     1, 3;
+     2, 2;
+     2, 3;
+     3, 1];
+
+## detectmovement.m
+to calculate the detectable movement of a magnet under specific adc-bit
 
 
