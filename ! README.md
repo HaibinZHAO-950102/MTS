@@ -108,6 +108,8 @@ a decorator, which shows that which funcion is now running.
 ___________________________________________________________________________________________________________________________
 
 ## 07.Feb.2020
+changed the name of variables in Project.m
+e.g. B -> MFD, BS -> MFD_at_Sensor,  k -> ADC_bit, n -> Nodenumber. so that the code will be easier to understand.
 
 changed something in Magnetfield.m
   able to input the filename, and whether write the excel-file or not
