@@ -1,6 +1,6 @@
-function experiment(name, testdata, experimenttimes, Sensorw,Sensornumber,q2,q3,By,Bz,H,B,Nodenumber, vmax, rmax, OG, BG)
-Sensordata = testdata(1:4);
-k = testdata(5);
+function experiment(name, Test_Data, experimenttimes, Sensorposition_w,Sensor_number,Coordinate_q2,Coordinate_q3,MFD_y,MFD_z,Area_Length,Area_Width,Node_Number, vmax, rmax, OG, BG)
+Sensordata = Test_Data(1:4);
+k = Test_Data(5);
 Os = zeros(experimenttimes,5);
 Error = zeros(experimenttimes,2);
 for n = 1 : experimenttimes
@@ -28,11 +28,12 @@ for n = 1 : experimenttimes
     initialspace(9) = max(Og(5)-rmax*0.01,0);
     initialspace(10) = min(Og(5)+rmax*0.01,2*pi);
     node = 4;
-    Os(n,:) = localization2(Bb,initialspace,node,Sensornumber,Sensorw,q2,q3,By,Bz,H,B,Nodenumber);
+    Os(n,:) = localization2(Bb,initialspace,node,Sensor_number,Sensorposition_w,Coordinate_q2,Coordinate_q3,MFD_y,MFD_z,Area_Length,Area_Width,Node_Number);
     Error(n,1) = norm(Os(n,1:3) - OG(n,1:3))*1000;
+    Error(n,1)
     Error(n,2) = norm(Os(n,4:5) - OG(n,4:5));
 end
-Parameter = [testdata,NaN(1,7)];
+Parameter = [Test_Data,NaN(1,7)];
 Result = [Parameter;OG(1:experimenttimes,:),Os,Error];
 name = [name,'.xlsx'];
 xlswrite(name,Result);

@@ -21,15 +21,18 @@ h33 = h12;
 
 % Megnetic Field from area 1
 for i = 1 : n + 1
+    t1 = clock;
     for j = 1 : n * 2 + 1
-        clc
-        percentage = floor((((i - 1) * (2 * n + 1) + (j - 1)) / (n + 1) / (2 * n + 1))*1000)/10;
-        Decroator(['Calculating MFS ',num2str(percentage),'% ...'],1)
         q2 = (i - 1) * B / n;
         q3 = (j - 1) * H / 2 / n - H/2;
         h12(i,j) = H12(q2,q3,m,Ra,L);
         h13(i,j) = H13(q2,q3,m,Ra,L);
     end
+    t2 = clock;
+    delta_t = etime(t2,t1);
+    rest_time = delta_t * (n+1-i);
+    percentage = floor(i/(n+1)*10000)/100;
+    Decroator(['Calculating MFS ',num2str(percentage),'%. Estimated to be finished in ',num2str(floor(rest_time)),' seconds ...'],1);
 end
 
 % Megnetic Field from area 3

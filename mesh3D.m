@@ -16,8 +16,8 @@ if figureplot >= 1
     xlim([min(q2),max(q2)])
     ylim([min(q3),max(q3)])
     zlim([min(min(HM)),max(max(HM))])
+    set(gcf,'outerposition',get(0,'screensize'));
     if figureplot == 2
-        set(gcf,'outerposition',get(0,'screensize'));
         print([filename,'.png'],'-dpng','-r600')
     end
     drawnow

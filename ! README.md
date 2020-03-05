@@ -67,7 +67,7 @@ rename inversetransform.m as coordinatei2w.m, which makes the name more clear.
 ## coordinatei2w.m
 as i said, it's just a name-replacement of inverstranform.m
 
-## foordinatew2i.m
+## coordinatew2i.m
 as i said, it's just a name-replacement of coordinatentransform.m
 
 ## grad.m
@@ -98,7 +98,17 @@ Generate a random testpoint and its MFD distribution, as well as the detected si
 Using localization algorithms and generated MFD distribution of the random test point, we try to localize the Magnet.
 I did 13000 times, using different datas of sensors, aim to find that, which parameter of a sensor is most important for localzing the Magnet.
 
+-------------------------------------------------------------------------------------------------------------------------------------
+## 03.03.2020
+I wrote a funtion generateMFD.m to generate the detected MFD of 25 Sensors at a specific (gaven) Orientation.
+I rewrite the function randpoints.m. The strategy of generating Random Points is changed. If  there is a NaN in MFD, that means the Magnet collides with the Bottom-Plane of the Workspace. Then the point will be discarded, and try to generate another point.
+I changed some names of variables
+I did another 2 Experiments.
+The one is that, the test points homogenous distribute on the Plane w3 = 0.05 in the whole workspace (w1,w2 in (-0.05,0.05)).
+The other is that, the test points homogenous distribute on a Plane w3 within a Segment (among 4 adjecent sensors, w1,w2 in (0,0.025))
 
+## generatMFD.m
+to calculate the detected signals by 25 sensors at a specific (gaven) Orientation of the Magnet.
 
 
 

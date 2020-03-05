@@ -17,6 +17,7 @@ if figureplot >= 1
     yticklabels({'-0.05','-0.025','0','0.025','0.05'})
     xlim([-0.05 0.05])
     ylim([-0.05 0.05])
+    grid on
     if figureplot == 2
         set(gcf,'outerposition',get(0,'screensize'));
         print([name,'.png'],'-dpng','-r600')

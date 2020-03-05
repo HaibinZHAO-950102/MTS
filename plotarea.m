@@ -13,8 +13,12 @@ if figureplot >= 1
     axis equal
     xlim([0 0.15])
     ylim([-0.15 0.15])
+    xticks([0, 0.05, 0.1, 0.15])
+    yticks([-0.15,-0.1, -0.05, 0, 0.05, 0.1, 0.15])
+    xticklabels({'0', '0.05', '0.1', '0.15'})
+    yticklabels({'-0.15','-0.1', '-0.05', '0', '0.05', '0.1', '0.15'})
+    set(gcf,'outerposition',get(0,'screensize'));
     if figureplot == 2
-        set(gcf,'outerposition',get(0,'screensize'));
         print([name,'.png'],'-dpng','-r600')
     end
     drawnow

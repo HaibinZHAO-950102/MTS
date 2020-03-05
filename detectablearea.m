@@ -4,6 +4,8 @@ for i = 1 : length(q2)
     for j = 1 : length(q3)
         if Bm(i,j) > Sensordata(3)
             D1(i,j) = 0;
+        elseif isnan(Bm(i,j)) == 1
+            D1(i,j) = 0;
         else
             D1(i,j) = NaN;
         end

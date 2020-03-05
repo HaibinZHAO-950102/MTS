@@ -1,4 +1,4 @@
-function plotpoints(x,y,variable1,variable2,name,figureplot)
+function plotpoints(x,y,variable1,variable2,name,filename,figureplot)
 if figureplot >= 1
     figure
     plot(x,y,'k.','Markersize',8)
@@ -10,11 +10,13 @@ if figureplot >= 1
     set(T,'Interpreter','latex')
     T = ylabel(variable2,'fontsize',30);
     set(T,'Interpreter','latex')
-    xlim([min(x) max(x)])
+    xlim([-0.05 0.05])
     ylim([min(y) max(y)])
+    xticks([-0.05, -0.025, 0, 0.025, 0.05])
+    xticklabels({'-0.05','-0.025', '0', '0.025',  '0.05'})
+    set(gcf,'outerposition',get(0,'screensize'));
     if figureplot == 2
-        set(gcf,'outerposition',get(0,'screensize'));
-        print([name,'.png'],'-dpng','-r600')
+        print([filename,'.png'],'-dpng','-r600')
     end
     drawnow
 end

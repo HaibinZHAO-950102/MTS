@@ -1,4 +1,4 @@
-function meshpoints(x,y,z,xq1,xq2,yq1,yq2,variable1,variable2,variable3,name,figureplot)
+function meshpoints(x,y,z,xq1,xq2,yq1,yq2,variable1,variable2,variable3,name,filename,figureplot)
 if figureplot >= 1
     figure
     [X,Y]=meshgrid(xq1:(xq2-xq1)/1000:xq2,yq1:(yq2-yq1)/1000:yq2);
@@ -17,9 +17,13 @@ if figureplot >= 1
     xlim([-0.05,0.05])
     ylim([-0.05,0.05])
     zlim([0,max(z)])
+    xticks([-0.05, -0.025, 0, 0.025, 0.05])
+    yticks([-0.05, -0.025, 0, 0.025, 0.05])
+    xticklabels({'-0.05','-0.025', '0', '0.025',  '0.05'})
+    yticklabels({'-0.05','-0.025', '0', '0.025',  '0.05'})
+    set(gcf,'outerposition',get(0,'screensize'));
     if figureplot == 2
-        set(gcf,'outerposition',get(0,'screensize'));
-        print([name,'.png'],'-dpng','-r600')
+        print([filename,'.png'],'-dpng','-r600')
     end
     drawnow
 end

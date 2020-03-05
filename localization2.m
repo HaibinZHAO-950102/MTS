@@ -1,7 +1,7 @@
-function Os = localization2(Bb,initialspace, node, Sensornumber,Sensorw,q2,q3,By,Bz,H,B,Nodenumber)
+function Os = localization2(Bb,initialspace, node, Sensor_number,Sensorposition_w,Coordinate_q2,Coordinate_q3,MFD_y,MFD_z,Area_Length,Area_Width,Node_Number)
 spacelength = initialspace(2)-initialspace(1);
 
-BS = zeros(Sensornumber^2,node,node,node,node,node);
+BS = zeros(Sensor_number^2,node,node,node,node,node);
 c1 = zeros(node);
 c2 = zeros(node);
 c3 = zeros(node);
@@ -10,7 +10,7 @@ theta2 = zeros(node);
 C = zeros(1,5);
 G = zeros(node,node,node,node,node);
 while spacelength > 0.0003
-     for s = 1:Sensornumber^2
+     for s = 1:Sensor_number^2
         for i = 1:node
             for j = 1:node
                 for k = 1:node
@@ -22,8 +22,8 @@ while spacelength > 0.0003
                             theta1(l) = initialspace(7) + (l-1)*(initialspace(8)-initialspace(7))/(node-1);
                             theta2(m) = initialspace(9) + (m-1)*(initialspace(10)-initialspace(9))/(node-1);
                             C = [c1(i),c2(j),c3(k),theta1(l),theta2(m)];
-                            [rcs, thetak]= coordinatew2i(C,Sensorw(:,s));
-                            [ByV,BzV] = itplt(rcs(2,2),rcs(2,3),q2,q3,By,Bz,H,B,Nodenumber);
+                            [rcs, thetak]= coordinatew2i(C,Sensorposition_w(:,s));
+                            [ByV,BzV] = itplt(rcs(2,2),rcs(2,3),Coordinate_q2,Coordinate_q3,MFD_y,MFD_z,Area_Length,Area_Width,Node_Number);
                             [BxS, ~, ~] = coordinatei2w(C(3),C(4),thetak,ByV,BzV);
                             BS(s,i,j,k,l,m) = BxS;
                         end
