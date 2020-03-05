@@ -98,6 +98,7 @@ Generate a random testpoint and its MFD distribution, as well as the detected si
 Using localization algorithms and generated MFD distribution of the random test point, we try to localize the Magnet.
 I did 13000 times, using different datas of sensors, aim to find that, which parameter of a sensor is most important for localzing the Magnet.
 
+<<<<<<< HEAD
 -------------------------------------------------------------------------------------------------------------------------------------
 ## 03.03.2020
 I wrote a funtion generateMFD.m to generate the detected MFD of 25 Sensors at a specific (gaven) Orientation.
@@ -109,6 +110,53 @@ The other is that, the test points homogenous distribute on a Plane w3 within a 
 
 ## generatMFD.m
 to calculate the detected signals by 25 sensors at a specific (gaven) Orientation of the Magnet.
+=======
+---------------------------------------------------------------------------------------------------------------------------
+## 05.Feb.2020
+i write a Decorator and add 2 parameters for Decorator.m and mesh3D.m, so that user can activite or deactivete the function Decoriator or mesh-functions
+
+## Decorator.m
+a decorator, which shows that which funcion is now running.
+
+___________________________________________________________________________________________________________________________
+
+## 07.Feb.2020
+changed the name of variables in Project.m
+e.g. B -> MFD, BS -> MFD_at_Sensor,  k -> ADC_bit, n -> Nodenumber. so that the code will be easier to understand.
+
+changed something in Magnetfield.m
+  able to input the filename, and whether write the excel-file or not
+
+changed the name Hy.xlsx into Hy_main.xlsx, and analogous for Hz, q2, q3. Because i want to calculate another MFS called Hy_show.xlsx. the new-calculated MFS can show the MFS distribution more clearly.
+
+Fixed some problems in plot- and mesh- functions
+new function of plot-/ and mesh- functions. if figureplot == 2, the function will output the image.
+
+wrote a function called area2points.m to change the detectable area from a huge matrix into a n times 2 vector. so that it would be much faster ploting the detectable area.
+
+wrote a function called detectmovement.m. Before that, i can only calculate the detectable area of a magnet field, when the magent move a specific (given) distance. for e.g. in my programm 1mm. The new function can calculate the detectable movement under different adc-bit.
+
+
+
+## area2points.m
+change the detectable area from a huge matrix into a n times 2 vector. so that it would be much faster ploting the detectable area.
+for e.g. 
+D = [1, 0, 1;
+     0, 1, 1;
+     1, 0, 0];
+to
+x = [1, 1;
+     1, 3;
+     2, 2;
+     2, 3;
+     3, 1];
+
+## detectmovement.m
+to calculate the detectable movement of a magnet under specific adc-bit
+
+----------------------------------------------------------------------------------------------
+i will change all variable names in uniform. (variable names in every sub-functions do not changed) So that the followers will use the code easily
+>>>>>>> 0a3e6d81cd4bae116e0862c83a7c5627f781ebad
 
 
 
