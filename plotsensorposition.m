@@ -1,4 +1,4 @@
-function plotsensorposition(x,y,variable1,variable2,name,figureplot)
+function plotsensorposition(x,y,variable1,variable2,name,filename,figureplot)
 if figureplot >= 1
     figure
     plot(x,y,'k.','Markersize',30)
@@ -18,9 +18,9 @@ if figureplot >= 1
     xlim([-0.05 0.05])
     ylim([-0.05 0.05])
     grid on
+    set(gcf,'outerposition',get(0,'screensize'));
     if figureplot == 2
-        set(gcf,'outerposition',get(0,'screensize'));
-        print([name,'.png'],'-dpng','-r600')
+        print([filename,'.png'],'-dpng','-r600')
     end
     drawnow
 end

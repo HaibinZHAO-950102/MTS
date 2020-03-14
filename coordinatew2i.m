@@ -1,4 +1,4 @@
-function [rcs, thetak] = coordinatew2i(Orientation,Sensor)
+function [rcs, thetak] = coordinatew2i(Orientation,Sensor_position)
 % rcs[1,:] is the Coordinates of the Sensors in Magentcoordinaten
 % Orientation is the position and rotation of the magnet, c1,c2,c3,theta1,theta2
 % Sensor is the Position of Sensors 
@@ -10,13 +10,12 @@ c3 = Orientation(3);
 theta1 = Orientation(4);
 theta2 = Orientation(5);
 
-s1 = Sensor(1);
-s2 = Sensor(2);
+s1 = Sensor_position(1);
+s2 = Sensor_position(2);
 
 rcs(1,1) = (-c1+s1)*cos(theta2) + (-c2+s2)*sin(theta1)*sin(theta2) + c3*cos(theta1)*sin(theta2);
 rcs(1,2) = (-c2+s2)*cos(theta1) - c3*sin(theta1);
 rcs(1,3) = (-c1+s1)*sin(theta2) - (-c2+s2)*sin(theta1)*cos(theta2) - c3*cos(theta1)*cos(theta2);
-
    
 if rcs(1,2) > 0
     thetak = - atan(rcs(1,1)/rcs(1,2));

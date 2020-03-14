@@ -6,17 +6,17 @@ else
 end
 y = varargin{1};
 z = varargin{2};
-m = varargin{3};
-Ra = varargin{4};
-L = varargin{5};
+magnetization = varargin{3};
+Magnet_radius = varargin{4};
+Magnet_altitude = varargin{5};
 
-dr = Ra/n;
+dr = Magnet_radius/n;
 dt = 2*pi/n;
 
 sum = 0;
-for r = 0 : dr : Ra
+for r = 0 : dr : Magnet_radius
     for theta = 0 : dt :2*pi
-        sum = sum + (y-r*sin(theta))/((r*cos(theta))^2+(y-r*sin(theta))^2+(z-L/2)^2)^(3/2)*r*dr*dt;
+        sum = sum + (y-r*sin(theta))/((r*cos(theta))^2+(y-r*sin(theta))^2+(z-Magnet_altitude/2)^2)^(3/2)*r*dr*dt;
     end
 end
-S = sum*m/4/pi;
+S = sum*magnetization/4/pi;

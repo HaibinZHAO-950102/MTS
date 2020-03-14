@@ -16,6 +16,7 @@ if figureplot >= 1
     xlim([min(q2),max(q2)])
     ylim([min(q3),max(q3)])
     zlim([min(min(HM)),max(max(HM))])
+    pbaspect([1 (max(q3)-min(q3))/(max(q2)-min(q2)) 1])
     set(gcf,'outerposition',get(0,'screensize'));
     if figureplot == 2
         print([filename,'.png'],'-dpng','-r600')

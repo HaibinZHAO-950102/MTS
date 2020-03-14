@@ -13,7 +13,7 @@ if figureplot >= 1
     xlim([0 0.05])
     ylim([min(y) max(y)])
     xticks([0, 0.01, 0.02, 0.03, 0.04 0.05])
-    xticklabels({'0', '0.01','0.02','0.03','0.04',  '0.05'})
+    xticklabels({'0', '0.01','0.02','0.03','0.04', '0.05'})
     set(gcf,'outerposition',get(0,'screensize'));
     if figureplot == 2
         print([filename,'.png'],'-dpng','-r600')

@@ -6,12 +6,10 @@ function [f,o] = Noising(MFD,Sensordata)
 % ZV is the zero voltage
 % Range is the range of the sensor
 % Sen is the sensitivity in V/G
-
 error = Sensordata(1);
 ZV = Sensordata(2);
 Range = Sensordata(3);
 Sen = Sensordata(4);
-
 f = zeros(length(MFD),1);
 for i = 1: length(MFD)
 
@@ -20,8 +18,6 @@ for i = 1: length(MFD)
     else
         o(i) = 1;
     end
-
-
     f(i) = ((rand()-0.5)*2*error/100+1) * Sen * MFD(i) + ZV;
 end
 
