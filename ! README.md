@@ -161,5 +161,17 @@ The other is that, the test points homogenous distribute on a Plane w3 within a 
 ## generatMFD.m
 to calculate the detected signals by 25 sensors at a specific (gaven) Orientation of the Magnet.
 
+-------------------------------------------------------------------------------------------------------------------------------
+## 14.03.2020
+Rename all parameters in the functions.
+Did some experiments to analyse Workspace, Sensors, Sensorarray.
+write a orientation_indicator to show the orientation clearly
+write a figurecutting to process the figure
+
+## oriantation_indicator.m
+to show the orientation of the magnet clearly
+
+## figurecutting.m
+to cut the white edges of figures
 
 
