@@ -174,4 +174,11 @@ to show the orientation of the magnet clearly
 ## figurecutting.m
 to cut the white edges of figures
 
+-------------------------------------------------------------------------------------------------------------
+## rewrite the figurecutting.m
+so that it can process the background of pictures being transparent.
 
+-----------------------------------------------------------------------------------------------
+add the validation part to the Project.m
+
+## The entire Project has ended temporarily, may be in the future i will continue  doing some studies on the topic. 
