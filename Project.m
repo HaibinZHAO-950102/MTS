@@ -457,22 +457,45 @@ for i = 1 : 4
 end
 MFD_Validation = Validation_Data(:,6:21);
 
-
-
-Decroator('Processing Pictures ....',decroator);
-files = dir('E:\Matlab\Project_github\MTS');
-for i = 1 : size(files,1)
-    NAME = files(i).name;
-    l = size(NAME,2);
-    if l >= 4
-        TYPE = NAME(l-2:l);
-        if TYPE == 'png'
-            I = cutfigure(NAME);
-            imwrite(I,NAME)
-        end
-    end
+validationresult = xlsread('Validationresult.xlsx');
+zero_voltage = validationresult(:,2);
+validation_evaluation = zeros(k,1);
+voltage_theory_quantization = zeros(16,4);
+for k = 1 : 4
+    voltage_is = validationresult(:,2*k+1);
+    MFD_theory = validationresult(:,2*k+2);
+    voltage_difference_theory = MFD_theory * 5 / 3000;
+    voltage_theory = voltage_difference_theory + zero_voltage;
+    voltage_theory_quantization(:,k) = (floor((voltage_theory + 5/2048) / (5/1024))) * 5 / 1024;
+    validation_evaluation(k) = norm(voltage_is - voltage_theory_quantization(:,k));
 end
+validation_evaluation = [NaN,validation_evaluation(1),NaN,validation_evaluation(2),NaN,validation_evaluation(3),NaN,validation_evaluation(4)]/16;
+% xlswrite('validation_evaluation.xlsx', validation_evaluation)
 
+xlswrite('validation_evaluation.xlsx',[validationresult(:,3),voltage_theory_quantization(:,1),validationresult(:,5),voltage_theory_quantization(:,2),validationresult(:,7),voltage_theory_quantization(:,3),validationresult(:,9),voltage_theory_quantization(:,4);validation_evaluation])
+
+
+% important!!
+% if the figures are already with tranparent background, the parameter
+% trans must be set to 0 !!!!!!!!!!!
+% Decroator('Processing Pictures ....',decroator);
+% trans = 0;
+% files = dir('E:\Matlab\Project_github\MTS');
+% for i = 1 : size(files,1)
+%     NAME = files(i).name;
+%     l = size(NAME,2);
+%     if l >= 4
+%         TYPE = NAME(l-2:l);
+%         if TYPE == 'png'
+%             [I alpha] = cutfigure(NAME);
+%             if trans == 1
+%                 imwrite(I,NAME,'Alpha',alpha)
+%             elseif trans == 0
+%                 imwrite(I,NAME)
+%             end
+%         end
+%     end
+% end
 
 Decroator('Programm finished.',decroator);
 
