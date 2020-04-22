@@ -487,7 +487,7 @@ xlswrite('validation_evaluation.xlsx',[validationresult(:,3),voltage_theory_quan
 %     if l >= 4
 %         TYPE = NAME(l-2:l);
 %         if TYPE == 'png'
-%             [I alpha] = cutfigure(NAME);
+%             [I alpha] = cutfigure(NAME,trans);
 %             if trans == 1
 %                 imwrite(I,NAME,'Alpha',alpha)
 %             elseif trans == 0
